@@ -23,11 +23,61 @@ To write a Python program to **print topological sorting** of a **Directed Acycl
 ## PYTHON PROGRAM
 
 ```
-WRITE YOUR CODE HERE
+def addEdge(u, v):
+	global adj
+	adj[u].append(v)
+
+# The function to do DFS() and stores departure time
+# of all vertex
+def DFS(v):
+	global visited, departure, time
+	visited[v] = 1
+	for i in adj[v]:
+		if visited[i] == 0:
+			DFS(i)
+	departure[time] = v
+	time += 1
+
+# The function to do Topological Sort. It uses DFS().
+def topologicalSort():
+    for i in range(V):
+        if(visited[i]==0):
+            DFS(i)
+    for i in range(V -1,-1,-1):
+        print(departure[i],end=" ")
+
+
+#.....
+
+
+#Code Here
+
+
+#.....
+
+
+
+
+
+# Driver code
+if __name__ == '__main__':
+
+	# Create a graph given in the above diagram
+	V,time, adj, visited, departure = 6, 0, [[] for i in range(7)], [0 for i in range(7)],[-1 for i in range(7)]
+	addEdge(5, 2)
+	addEdge(5, 0)
+	addEdge(4, 0)
+	addEdge(4, 1)
+	addEdge(2, 3)
+	addEdge(3, 1)
+
+	print("Topological Sort of the given graph is")
+	topologicalSort()
 ```
 
 ## OUTPUT
-```
-```
+<img width="723" height="150" alt="image" src="https://github.com/user-attachments/assets/c715b47b-135c-45ad-8d71-4c109b4b3e8d" />
+
 
 ## RESULT
+    Thus the program to **print topological sorting** of a **Directed Acyclic Graph (DAG)** is successfully verified.
